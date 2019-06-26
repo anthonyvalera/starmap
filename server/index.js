@@ -4,7 +4,7 @@ const app = express();
 
 /* eslint-disable global-require, import/no-extraneous-dependencies */
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').load();
+  require('dotenv').config();
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');

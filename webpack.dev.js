@@ -9,8 +9,8 @@ module.exports = {
       include: path.resolve(__dirname, 'src'),
       loader: 'babel-loader?cacheDirectory=true&babelrc=false',
       options: {
-        presets: ['env', 'react'],
-        plugins: ['transform-class-properties'],
+        presets: ['@babel/preset-env', '@babel/preset-react'],
+        plugins: ['transform-class-properties', 'react-hot-loader/babel'],
       },
     },
     {
@@ -31,6 +31,9 @@ module.exports = {
   },
   resolve: {
     symlinks: false,
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    },
   },
   devtool: 'inline-source-map',
   plugins: [

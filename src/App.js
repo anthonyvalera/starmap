@@ -1,14 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class App extends Component {
-  static propTypes = {};
-  state = {};
+const App = () => (
+  <div id="root">
+    Hello World!!
+  </div>
+);
 
-  render() {
-    return (
-      <div id="root">
-        Hello World!
-      </div>
-    );
-  }
-}
+export default App;
