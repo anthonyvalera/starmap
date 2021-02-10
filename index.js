@@ -4,11 +4,10 @@ const app = express();
 
 /* eslint-disable global-require, import/no-extraneous-dependencies */
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
   const webpack = require('webpack');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
-  const config = require('../webpack.dev.js');
+  const config = require('./webpack.dev.js');
   const compiler = webpack(config);
 
   app.use(webpackDevMiddleware(compiler, { publicPath: config.output.publicPath }));

@@ -1,12 +1,12 @@
 {
   "name": "starmap",
   "version": "1.0.0",
-  "description": "Base template for vanilla React Apps",
+  "description": "A simple template for React Apps",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "dev": "nodemon server --watch server",
-    "start": "npm run build && NODE_ENV=production node server",
+    "dev": "nodemon index --watch index",
+    "start": "npm run build && NODE_ENV=production node index",
     "test": "jest --no-cache",
     "cover": "jest --watchAll"
   },
@@ -38,7 +38,6 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "clean-webpack-plugin": "^3.0.0",
-    "dotenv": "^8.2.0",
     "eslint": "^7.19.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-babel": "^5.3.1",
