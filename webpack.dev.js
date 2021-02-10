@@ -1,39 +1,32 @@
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
   module: {
-    rules: [{
-      test: /\.js$/,
-      include: path.resolve(__dirname, 'src'),
-      loader: 'babel-loader?cacheDirectory=true&babelrc=false',
-      options: {
-        presets: ['@babel/preset-env', '@babel/preset-react'],
-        plugins: ['transform-class-properties', 'react-hot-loader/babel'],
-      },
-    },
-    {
-      test: /\.(scss|css)$/,
-      include: path.resolve(__dirname, 'src'),
-      use: [{
-        loader: 'style-loader',
-      },
+    rules: [
       {
-        loader: 'css-loader',
+        test: /\.js$/,
+        include: path.resolve(__dirname, 'src'),
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+          presets: ['@babel/preset-env', '@babel/preset-react'],
+          plugins: [
+            'transform-class-properties',
+            require.resolve('react-refresh/babel'),
+          ],
+        },
       },
-      {
-        loader: 'sass-loader',
-      },
-      ],
-    },
     ],
+  },
+  devServer: {
+    contentBase: './dist',
+    hot: true,
   },
   resolve: {
     symlinks: false,
-    alias: {
-      'react-dom': '@hot-loader/react-dom'
-    },
   },
   devtool: 'inline-source-map',
   plugins: [
@@ -42,15 +35,15 @@ module.exports = {
       favicon: 'public/favicon.ico',
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new ReactRefreshWebpackPlugin(),
   ],
-  entry: ['./src/index.dev.js', 'webpack-hot-middleware/client'],
+  entry: ['./src/index.js', 'webpack-hot-middleware/client'],
   watchOptions: {
     ignored: /node_modules/,
   },
   output: {
     filename: 'bundle.js',
     chunkFilename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
   mode: 'development',
