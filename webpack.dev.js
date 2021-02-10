@@ -1,7 +1,7 @@
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   module: {
@@ -29,6 +29,12 @@ module.exports = {
     symlinks: false,
   },
   devtool: 'inline-source-map',
+  optimization: {
+    runtimeChunk: true,
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: false,
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html',
@@ -42,9 +48,10 @@ module.exports = {
     ignored: /node_modules/,
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     chunkFilename: '[name].[chunkhash].js',
     publicPath: '/',
+    pathinfo: false,
   },
   mode: 'development',
 };
